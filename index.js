@@ -3,10 +3,17 @@ const httpShutdown = require('http-shutdown');
 const path = require('path');
 const app = express();
 const config = require('./config');
+const history = require('connect-history-api-fallback');
 
-app.use(express.static(path.join(__dirname, 'dist')));
+const staticFileMiddleware = express.static(path.join(__dirname, 'dist'));
+app.use(staticFileMiddleware);
+app.use(history({
+  disableDotRule: true,
+  verbose: true
+}));
+app.use(staticFileMiddleware);
 
-app.get('*', (request, respond) => {
+app.get('/', (request, respond) => {
     respond.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
