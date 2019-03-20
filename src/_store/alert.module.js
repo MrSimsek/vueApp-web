@@ -17,11 +17,11 @@ const actions = {
 
 const mutations = {
     success(state, message) {
-        state.type = 'alert-success';
+        state.type = 'text-center py-5 mb-3 text-green font-bold';
         state.message = message;
     },
     error(state, message) {
-        state.type = 'alert-danger';
+        state.type = 'text-center py-5 mb-3 text-red font-bold';
         state.message = message;
     },
     clear(state) {
