@@ -1,16 +1,16 @@
 <template>
   <div id="home-page" class="text-center">
     <h1>Hi {{account.user.firstName}}!</h1>
-    <p>You're logged in with Vue + Vuex & JWT!!</p>
+    <p class="my-3">You're logged in with Vue + Vuex & JWT!!</p>
     <h3>Users from secure api end point:</h3>
     <em v-if="users.loading">Loading users...</em>
-    <span v-if="users.error" class="text-danger">ERROR: {{users.error}}</span>
-    <ul v-if="users.items" class="list-reset">
-        <li v-for="user in users.items" :key="user.id">
-            {{user.firstName + ' ' + user.lastName}}
-            <span v-if="user.deleting"><em> - Deleting...</em></span>
-            <span v-else-if="user.deleteError" class="text-danger"> - ERROR: {{user.deleteError}}</span>
-            <span v-else> - <a @click="deleteUser(user.id)" class="text-danger">Delete</a></span>
+    <span v-if="users.error" class="text-red">ERROR: {{users.error}}</span>
+    <ul v-if="users.items" class="list-reset my-12">
+        <li v-for="user in users.items" :key="user.id" class="mb-8 text-lg">
+            <span>{{user.firstName + ' ' + user.lastName}}</span>
+            <span v-if="user.deleting" class="text-red"><em> - Deleting...</em></span>
+            <span v-else-if="user.deleteError" class="text-red"> - ERROR: {{user.deleteError}}</span>
+            <span v-else> - <a @click="deleteUser(user.id)" class="text-white rounded-full bg-red p-2 cursor-pointer">Delete</a></span>
         </li>
     </ul>
     <p>

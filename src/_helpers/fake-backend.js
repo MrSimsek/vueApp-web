@@ -100,12 +100,19 @@ export function configureFakeBackend() {
                         // find user by id in users array
                         let urlParts = url.split('/');
                         let id = parseInt(urlParts[urlParts.length - 1]);
+                        const currentUser = JSON.parse(localStorage.getItem('user'));
                         for (let i = 0; i < users.length; i++) {
                             let user = users[i];
                             if (user.id === id) {
                                 // delete user
                                 users.splice(i, 1);
-                                localStorage.setItem('users', JSON.stringify(users));
+                                if(currentUser.id === id) {
+                                    localStorage.removeItem('user');
+                                    localStorage.setItem('users', JSON.stringify(users));
+                                    location.reload(true);
+                                } else {
+                                    localStorage.setItem('users', JSON.stringify(users));
+                                }
                                 break;
                             }
                         }
