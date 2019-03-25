@@ -10,7 +10,7 @@
             <span>{{user.firstName + ' ' + user.lastName}}</span>
             <span v-if="user.deleting" class="text-red"><em> - Deleting...</em></span>
             <span v-else-if="user.deleteError" class="text-red"> - ERROR: {{user.deleteError}}</span>
-            <span v-else> - <a @click="deleteUser(user.id)" class="text-white rounded-full bg-red p-2 cursor-pointer">Delete</a></span>
+            <span v-else> - <a @click="deleteUser(user.id)" class="text-red rounded-full bg-white border-2 border-red p-2 cursor-pointer hover:bg-red hover:border-none hover:text-white">Delete</a></span>
         </li>
     </ul>
     <p>
